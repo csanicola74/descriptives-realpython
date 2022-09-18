@@ -281,18 +281,7 @@ mode_ = max((u.count(item), item) for item in set(u))[1]
 mode_
 
 # this is how to get mode with Python functions
-mode_ = statistics.mode(u)  # returns a single value
+mode_ = statistics.mode(u)
 mode_
-mode_ = statistics.multimode(u)  # returns the multiple modes if applicable
+mode_ = statistics.multimode(u)
 mode_
-
-# if you there is more than one modal value and you use 'mode()' then it will produce an error
-v = [12, 15, 12, 15, 21, 15, 12]
-statistics.mode(v)  # Raises StatisticsError
-statistics.multimode(v)
-
-# these two handle nan values as regular
-statistics.mode([2, math.nan, 2])
-statistics.multimode([2, math.nan, 2])
-statistics.mode([2, math.nan, 0, math.nan, 5])
-statistics.multimode([2, math.nan, 0, math.nan, 5])

@@ -202,97 +202,10 @@ scipy.stats.hmean(z)
 #### GEOMETRIC MEAN ####
 
 # geometric mean is the n-th root of the product of all n elements x1 in a dataset x
-# you can implement the geometric mean in pure Python like this:
+
 gmean = 1
 for item in x:
     gmean *= item
+
 gmean **= 1 / len(x)
 gmean
-
-# there is also a new function to do the same thing
-# it converts all values to floating-point numbers and returns their geometric mean
-gmean = statistics.geometric_mean(x)
-gmean
-
-# If you pass data with nan values, then statistics.geometric_mean() will behave like most similar functions and return nan:
-gmean = statistics.geometric_mean(x_with_nan)
-gmean
-
-# can also get the geometric mean with 'scipy.stats.gmean()':
-scipy.stats.gmean(y)
-scipy.stats.gmean(z)
-
-#### MEDIAN ####
-
-# sample median - the middle element of a sorted dataset
-# can be sorted in increasing or decreasing order
-# the mean is heavily affected by outliers but
-# the median only depends on outliers either slightly or not at all
-
-# pur Python implementations of the median
-n = len(x)
-if n % 2:
-    median_ = sorted(x)[round(0.5*(n-1))]
-else:
-    x_ord, index = sorted(x), round(0.5 * n)
-    median_ = 0.5 * (x_ord[index-1] + x_ord[index])
-median_
-
-# the Python function for median:
-median_ = statistics.median(x)
-median_
-median_ = statistics.median(x[:-1])
-median_
-
-# if the number of elements is even then there are two middle values
-# 'median_low' returns the lower value
-statistics.median_low(x[:-1])
-# 'median_high' returns the higher value
-statistics.median_high(x[:-1])
-
-# the median functions don't return nan values even if they are in the dataset
-statistics.median(x_with_nan)
-statistics.median_low(x_with_nan)
-statistics.median_high(x_with_nan)
-
-# can also get median with 'np.median'
-median_ = np.median(y)
-median_
-median_ = np.median(y[:-1])
-median_
-
-# you can use this to ignore all nan values
-np.nanmedian(y_with_nan)
-np.nanmedian(y_with_nan[:-1])
-
-# the Pandas series objects have the method '.median()' that ignores nan values by default
-z.median()
-z_with_nan.median()
-
-
-#### MODE ####
-
-# sample mode is the value in the dataset that occurs most frequently
-# if there isnt a single such value, then the set is multimodal (has multiple modal values)
-
-# this is how to get mode with pure Python
-u = [2, 3, 2, 8, 12]
-mode_ = max((u.count(item), item) for item in set(u))[1]
-mode_
-
-# this is how to get mode with Python functions
-mode_ = statistics.mode(u)  # returns a single value
-mode_
-mode_ = statistics.multimode(u)  # returns the multiple modes if applicable
-mode_
-
-# if you there is more than one modal value and you use 'mode()' then it will produce an error
-v = [12, 15, 12, 15, 21, 15, 12]
-statistics.mode(v)  # Raises StatisticsError
-statistics.multimode(v)
-
-# these two handle nan values as regular
-statistics.mode([2, math.nan, 2])
-statistics.multimode([2, math.nan, 2])
-statistics.mode([2, math.nan, 0, math.nan, 5])
-statistics.multimode([2, math.nan, 0, math.nan, 5])

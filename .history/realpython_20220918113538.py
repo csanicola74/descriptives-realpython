@@ -287,12 +287,3 @@ mode_ = statistics.multimode(u)  # returns the multiple modes if applicable
 mode_
 
 # if you there is more than one modal value and you use 'mode()' then it will produce an error
-v = [12, 15, 12, 15, 21, 15, 12]
-statistics.mode(v)  # Raises StatisticsError
-statistics.multimode(v)
-
-# these two handle nan values as regular
-statistics.mode([2, math.nan, 2])
-statistics.multimode([2, math.nan, 2])
-statistics.mode([2, math.nan, 0, math.nan, 5])
-statistics.multimode([2, math.nan, 0, math.nan, 5])
